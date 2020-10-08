@@ -1,0 +1,40 @@
+{
+  "name": "@casedinc/cased",
+  "version": "0.1.5",
+  "description": "Node library for the Cased API",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cased/cased-node.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/express": "^4.17.6",
+    "@types/jest": "25.2.3",
+    "@types/node": "14.0.5",
+    "jest": "26.0.1",
+    "prettier": "2.0.5",
+    "ts-jest": "26.0.0",
+    "typescript": "3.9.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "prettier --check .",
+    "test": "jest",
+    "prepublishOnly": "tsc"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cased/cased-node/issues"
+  },
+  "homepage": "https://github.com/cased/cased-node#readme",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "author": "Cased, Inc."
+}

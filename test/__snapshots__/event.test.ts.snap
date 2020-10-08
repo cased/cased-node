@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fetch 1`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/audit-trails/system/events/00000b3aa6d6672171da2f209df91831",
+}
+`;
+
+exports[`publish 1`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer publish_test_001",
+    "Content-Length": "108",
+    "Content-Type": "application/json; charset=utf-8",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "POST",
+  "path": "/api/",
+}
+`;
+
+exports[`publish 2`] = `"{\\"cased_id\\":\\"11111111111111111111111111111111\\",\\"timestamp\\":\\"2020-01-01T12:00:00.000Z\\",\\"action\\":\\"user.login\\"}"`;
+
+exports[`search action 1`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/events?page=1&per_page=25&phrase=action%3Auser.login",
+}
+`;
+
+exports[`search actor 1`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/events?page=1&per_page=25&phrase=actor%3Ajill",
+}
+`;
+
+exports[`search for policy name 1`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_002",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/events?page=1&per_page=25&phrase=action%3Ateam.update",
+}
+`;
+
+exports[`search for policy object 1`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_003",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/events?page=1&per_page=25&phrase=action%3Ateam.update",
+}
+`;
+
+exports[`search phrase object 1`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/events?page=1&per_page=25&phrase=action%3Ateam.update",
+}
+`;
+
+exports[`search raw phrase 1`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/events?page=1&per_page=25&phrase=action%3Ateam.update",
+}
+`;
+
+exports[`search raw phrase 2`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/events?page=2&per_page=25&phrase=action%3Ateam.update",
+}
+`;

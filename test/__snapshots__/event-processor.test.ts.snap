@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`merge with missing pii 1`] = `
+Object {
+  ".cased": Object {
+    "foo": "bar",
+    "pii": Object {
+      "business": Array [
+        Object {
+          "begin": 0,
+          "end": 6,
+          "label": "pii",
+        },
+      ],
+      "username": Array [
+        Object {
+          "begin": 0,
+          "end": 7,
+          "label": "username",
+        },
+      ],
+    },
+  },
+  "action": "payout.deliver",
+  "amount": 42,
+  "business": "GitHub",
+  "cased_id": "00004707cae288dc0f1a99ce",
+  "timestamp": "2020-06-04T06:59:59.000000Z",
+  "username": "@github",
+}
+`;
+
+exports[`nested username field pii 1`] = `
+Object {
+  ".cased": Object {
+    "pii": Object {
+      "username": Array [
+        Object {
+          "begin": 0,
+          "end": 9,
+          "label": "username",
+        },
+      ],
+    },
+  },
+  "action": "user.create",
+  "actor": "some-actor",
+  "profile": Object {
+    "username": "@username",
+  },
+}
+`;
+
+exports[`nested username matching pii 1`] = `
+Object {
+  ".cased": Object {
+    "pii": Object {
+      "friend": Array [
+        Object {
+          "begin": 0,
+          "end": 15,
+          "label": "username",
+        },
+      ],
+      "username": Array [
+        Object {
+          "begin": 0,
+          "end": 13,
+          "label": "username",
+        },
+        Object {
+          "begin": 23,
+          "end": 39,
+          "label": "username",
+        },
+      ],
+    },
+  },
+  "action": "user.create",
+  "actor": "some-actor",
+  "profile": Object {
+    "info": Object {
+      "friend": "@friendusername",
+    },
+    "username": "@someusername and also @anotherusername",
+  },
+}
+`;
+
+exports[`username field pii 1`] = `
+Object {
+  ".cased": Object {
+    "pii": Object {
+      "username": Array [
+        Object {
+          "begin": 0,
+          "end": 9,
+          "label": "username",
+        },
+      ],
+    },
+  },
+  "action": "user.create",
+  "actor": "some-actor",
+  "username": "@username",
+}
+`;
+
+exports[`username pii 1`] = `
+Object {
+  ".cased": Object {
+    "pii": Object {
+      "friend_username": Array [
+        Object {
+          "begin": 0,
+          "end": 15,
+          "label": "username",
+        },
+      ],
+      "new_username": Array [
+        Object {
+          "begin": 0,
+          "end": 13,
+          "label": "username",
+        },
+        Object {
+          "begin": 23,
+          "end": 39,
+          "label": "username",
+        },
+      ],
+    },
+  },
+  "action": "user.create",
+  "actor": "some-actor",
+  "friend_username": "@friendusername",
+  "new_username": "@someusername and also @anotherusername",
+}
+`;

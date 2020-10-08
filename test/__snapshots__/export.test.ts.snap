@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`create minimal 1`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "Content-Length": "2",
+    "Content-Type": "application/json; charset=utf-8",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "POST",
+  "path": "/api/exports",
+}
+`;
+
+exports[`create minimal 2`] = `"{}"`;
+
+exports[`create with phrase 1`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "Content-Length": "30",
+    "Content-Type": "application/json; charset=utf-8",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "POST",
+  "path": "/api/exports",
+}
+`;
+
+exports[`create with phrase 2`] = `"{\\"phrase\\":\\"action:user.login\\"}"`;
+
+exports[`downloadURL pending state 1`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/exports/00000000-7b43-43a9-bb74-e924773e876d",
+}
+`;
+
+exports[`downloadURL pending state 2`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/exports/00000000-7b43-43a9-bb74-e924773e876d",
+}
+`;
+
+exports[`downloadURL pending state 3`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/exports/00000000-7b43-43a9-bb74-e924773e876d",
+}
+`;
+
+exports[`downloadURL pending state 4`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/exports/00000000-7b43-43a9-bb74-e924773e876d/download",
+}
+`;
+
+exports[`downloadURL successful state 1`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/exports/00000000-7b43-43a9-bb74-e924773e876d",
+}
+`;
+
+exports[`downloadURL successful state 2`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/exports/00000000-7b43-43a9-bb74-e924773e876d/download",
+}
+`;
+
+exports[`fetch 1`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/exports/00000000-7b43-43a9-bb74-e924773e876d",
+}
+`;
+
+exports[`settled 1`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/exports/00000000-7b43-43a9-bb74-e924773e876d",
+}
+`;
+
+exports[`settled 2`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/exports/00000000-7b43-43a9-bb74-e924773e876d",
+}
+`;
+
+exports[`settled 3`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "Bearer cs_test_001",
+    "User-Agent": "Jest/1.0",
+  },
+  "host": "cased.localhost",
+  "method": "GET",
+  "path": "/api/exports/00000000-7b43-43a9-bb74-e924773e876d",
+}
+`;
