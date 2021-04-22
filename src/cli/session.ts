@@ -1,7 +1,7 @@
-import { config as globalConfig, ConfigOverrides, Dictionary } from "./config";
-import { request } from "./client";
-import { ReasonRequiredError } from "./errors";
-import { sleep } from "./utils";
+import { config as globalConfig, ConfigOverrides, Dictionary } from "../config";
+import { request } from "../client";
+import { ReasonRequiredError } from "../errors";
+import { sleep } from "../utils";
 
 
 type SessionState = "requested" | "approved" | "denied" | "timed_out" | "canceled"
@@ -70,6 +70,7 @@ export interface SessionOptions {
   metadata?: Dictionary;
   command?: string;
   reason?: string;
+  userToken?: string;
 }
 
 /**
@@ -92,7 +93,7 @@ export interface SessionOptions {
   });
 };
 
-export const session = async (
+export const create = async (
   options: SessionOptions = {},
   config: ConfigOverrides = {},
 ): Promise<Session | ReasonRequiredResult> => {
@@ -110,6 +111,7 @@ export const session = async (
 
   return session
 };
+
 /**
  * Wait for `Session` to have its state changed.
  *

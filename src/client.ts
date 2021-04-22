@@ -82,8 +82,8 @@ export const request = async <T>(options: RequestOptions): Promise<T> => {
     }
     apiKey = config.guardApplicationKey;
 
-    if (!options.params['user_token']) {
-      options.params['user_token'] = config.guardUserToken
+    if (!options.params.user_token) {
+      options.params.user_token = options.params.userToken || config.guardUserToken;
     }
   } else {
     let policyKey = getPolicyKey(config);

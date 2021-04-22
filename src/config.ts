@@ -1,7 +1,7 @@
 import type { AuditEvent } from "./event";
 import { EventProcessor, defaultEventProcessor } from "./event-processor";
 import { eventProcessor as contextEventProcessor } from "./context";
-import { CLI } from ".";
+import { cli } from ".";
 
 /**
  * Cased client configuration.
@@ -72,10 +72,10 @@ export interface Config {
 
   guardDenyIfUnreachable: boolean;
 
-  cli: CLI;
+  cli: CLIConfiguration;
 }
 
-export interface CLI {
+export interface CLIConfiguration {
   metadata: Dictionary;
 }
 
