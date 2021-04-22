@@ -1,6 +1,7 @@
 import type { AuditEvent } from "./event";
 import { EventProcessor, defaultEventProcessor } from "./event-processor";
 import { eventProcessor as contextEventProcessor } from "./context";
+import { CLI } from ".";
 
 /**
  * Cased client configuration.
@@ -58,6 +59,33 @@ export interface Config {
    * Mock out any publish event during testing.
    */
   mockPublishEvents: MockPublishEvents | boolean;
+
+  /**
+   * Your CLI API Key.
+   */
+  guardApplicationKey: string | null;
+
+  /**
+   * Your user identifier.
+   */
+  guardUserToken: string | null;
+
+  guardDenyIfUnreachable: boolean;
+
+  cli: CLI;
+}
+
+export interface CLI {
+  metadata: Dictionary;
+}
+
+/**
+ * A simple dictionary conforms to this interface.
+ *
+ * @public
+ */
+export interface Dictionary {
+  [name: string]: string | undefined;
 }
 
 /**
@@ -120,6 +148,18 @@ export interface ConfigOverrides {
    * Mock out any publish event during testing.
    */
   mockPublishEvents?: MockPublishEvents | boolean;
+
+  guardApplicationKey?: string;
+
+  guardUserToken?: string;
+}
+
+const castBool = (val: string | undefined): boolean => {
+  if (!val) {
+    return false;
+  }
+
+  return ["true", "1"].indexOf(val) >= 0;
 }
 
 /**
@@ -146,6 +186,12 @@ export let config: Config = {
   publishKey: process.env["CASED_PUBLISH_KEY"] || null,
   eventPipeline: [defaultEventProcessor, contextEventProcessor],
   mockPublishEvents: false,
+  guardApplicationKey: process.env["GUARD_APPLICATION_KEY"] || null,
+  guardUserToken: process.env["GUARD_USER_TOKEN"] || null,
+  guardDenyIfUnreachable: castBool(process.env["DENY_IF_UNREACHABLE"]),
+  cli: {
+    metadata: {},
+  },
 };
 
 /**
