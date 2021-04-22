@@ -27,7 +27,7 @@ interface RequestOptions {
    *
    * Default `"api"`.
    */
-  baseURL?: "api" | "publish";
+  baseURL?: "api" | "publish" | "cli";
 
   /**
    * The API endpoint path.
@@ -72,6 +72,19 @@ export const request = async <T>(options: RequestOptions): Promise<T> => {
       );
     }
     apiKey = config.publishKey;
+  } else if (options.baseURL === "cli") {
+    if (!config.guardApplicationKey) {
+      throw new AuthenticationError(
+        "No CLI API key provided. " +
+          "Set your API key using config.guardApplicationKey = <API-KEY>, or supply the key with the request. " +
+          "See https://docs.cased.com for more information."
+      );
+    }
+    apiKey = config.guardApplicationKey;
+
+    if (!options.params['user_token']) {
+      options.params['user_token'] = config.guardUserToken
+    }
   } else {
     let policyKey = getPolicyKey(config);
     if (!policyKey) {
@@ -125,6 +138,7 @@ export const request = async <T>(options: RequestOptions): Promise<T> => {
     case 201:
     case 202:
     case 204:
+    case 400:
     case 404:
       return data;
 

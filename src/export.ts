@@ -6,6 +6,7 @@ import { stringifySearchPhrase, SearchPhrase } from "./event";
 import type { Readable } from "stream";
 import assert from "assert";
 import type { Request, Response, Handler } from "express";
+import { sleep } from "./utils";
 
 /**
  * An `Export`s metadata and current state
@@ -188,16 +189,4 @@ export const download = async (
 ): Promise<Readable> => {
   const url = await downloadURL(token, pollInterval, config);
   return httpsRequestStream(url);
-};
-
-/**
- * Async Sleep.
- *
- * @private
- * @param delay - The time, in milliseconds, to wait.
- */
-const sleep = (delay: number): Promise<void> => {
-  return new Promise((resolve) => {
-    setTimeout(resolve, delay);
-  });
 };

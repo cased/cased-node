@@ -152,6 +152,8 @@ export interface ConfigOverrides {
   guardApplicationKey?: string;
 
   guardUserToken?: string;
+
+  apiKey?: string;
 }
 
 const castBool = (val: string | undefined): boolean => {

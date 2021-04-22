@@ -36,3 +36,10 @@ export class ExportError extends Error {
     Object.setPrototypeOf(this, ExportError.prototype);
   }
 }
+
+export class ReasonRequiredError extends Error {
+  constructor() {
+    super("Reason required");
+    Object.setPrototypeOf(this, ReasonRequiredError.prototype);
+  }
+}

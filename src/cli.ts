@@ -1,13 +1,17 @@
 import { config as globalConfig, ConfigOverrides, Dictionary } from "./config";
 import { request } from "./client";
+import { ReasonRequiredError } from "./errors";
+import { sleep } from "./utils";
 
+
+type SessionState = "requested" | "approved" | "denied" | "timed_out" | "canceled"
 
 /**
  * An `Export`s metadata and current state
  *
  * @public
  */
- export interface SessionResult {
+ export interface Session {
   // The CLI session ID
   id: string;
 
@@ -21,7 +25,7 @@ import { request } from "./client";
   api_record_url: string;
 
   // The current state the CLI session is in
-  state: "requested" | "approved" | "denied" | "timed_out" | "canceled";
+  state: SessionState;
 
   // Command that invoked CLI session.
   command: string;
@@ -53,6 +57,10 @@ import { request } from "./client";
   created_at: string;
 }
 
+export interface ReasonRequiredResult {
+  error: "reason_required";
+}
+
 /**
  * Options for creating a new `Session`.
  *
@@ -64,15 +72,66 @@ export interface SessionOptions {
   reason?: string;
 }
 
-export const session = (
+/**
+ * Fetch `Session` status and metadata.
+ *
+ * @public
+ * @param sessionId - The `Session` identifier.
+ * @param config - Configuration to override.
+ */
+ export const fetch = (
+  sessionId: string,
+  config: ConfigOverrides = {}
+): Promise<Session> => {
+  return request<Session>({
+    method: "GET",
+    baseURL: "cli",
+    path: `cli/sessions/${sessionId}`,
+    params: {},
+    config: config,
+  });
+};
+
+export const session = async (
   options: SessionOptions = {},
   config: ConfigOverrides = {},
-): Promise<SessionResult> => {
-  return request<SessionResult>({
+): Promise<Session | ReasonRequiredResult> => {
+  const session = await request<Session | ReasonRequiredResult>({
     method: "POST",
-    baseURL: "api",
+    baseURL: "cli",
     path: "cli/sessions",
     params: options,
     config: config,
   });
+
+  if((session as ReasonRequiredResult).error) {
+    throw new ReasonRequiredError()
+  }
+
+  return session
+};
+/**
+ * Wait for `Session` to have its state changed.
+ *
+ * @public
+ * @param sessionId - The `Session` identifier.
+ * @param pollInterval - The polling interval in milliseconds.
+ * @param config - Configuration to override.
+ * @returns Successful promise when session has changed its state.
+ */
+export const settled = async (
+  sessionId: string,
+  pollInterval = 1_000,
+  config: ConfigOverrides = {}
+): Promise<Session> => {
+  while (true) {
+    const session = await fetch(sessionId, config);
+    switch (session.state) {
+      case "requested":
+        await sleep(pollInterval);
+        break;
+      default:
+        return session;
+    }
+  }
 };
